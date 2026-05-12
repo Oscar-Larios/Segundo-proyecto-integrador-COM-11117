@@ -1,0 +1,77 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form input, .form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--white);
+  transition: border-color 0.15s;
+  resize: vertical;
+}
+.form input:focus, .form textarea:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.preview {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.error {
+  background: #fde8ec;
+  color: var(--accent);
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  border-left: 3px solid var(--accent);
+}
+
+.actions { display: flex; gap: 12px; }
+
+.btnPrimary {
+  flex: 1;
+  padding: 12px;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btnPrimary:hover:not(:disabled) { background: var(--accent); }
+.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnDanger {
+  padding: 12px 24px;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnDanger:hover:not(:disabled) { background: var(--accent); color: var(--white); }
+.btnDanger:disabled { opacity: 0.5; cursor: not-allowed; }

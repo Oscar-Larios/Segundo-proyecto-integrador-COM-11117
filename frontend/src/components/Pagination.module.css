@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 32px 0;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: 1px solid var(--black);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: none;
+}
+.btn:hover:not(:disabled) { background: var(--black); color: var(--white); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.info { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.05em; }
