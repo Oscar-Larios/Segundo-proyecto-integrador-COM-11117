@@ -1,0 +1,39 @@
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--black);
+}
+
+.error {
+  background: #fde8ec;
+  color: var(--accent);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-left: 3px solid var(--accent);
+  font-size: 0.9rem;
+}
+
+.notice {
+  max-width: 600px;
+  margin: 80px auto;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 40px;
+  border: 1px solid var(--border);
+}
+
+.state {
+  text-align: center;
+  padding: 80px;
+  color: var(--muted);
+}
