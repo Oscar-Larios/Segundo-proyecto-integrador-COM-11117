@@ -11,6 +11,13 @@
   margin-bottom: 28px;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--black);
+  gap: 24px; 
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .sectionTitle {
@@ -19,7 +26,12 @@
   font-weight: 700;
 }
 
-.controls { display: flex; gap: 8px; align-items: center; }
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: 32px;
+}
 
 .viewBtn {
   padding: 6px 14px;
