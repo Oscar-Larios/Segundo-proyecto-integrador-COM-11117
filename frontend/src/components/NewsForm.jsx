@@ -26,55 +26,62 @@ export default function NewsForm({ initial = {}, onSubmit, onDelete, loading }) 
     <form className={styles.form} onSubmit={handleSubmit}>
       {error && <p className={styles.error}>{error}</p>}
 
-      <label>
-        Título
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          placeholder="Título del artículo"
-        />
-      </label>
+      <div className={styles.columns}>
+        {/* Columna izquierda */}
+        <div className={styles.left}>
+          <label>
+            Título
+            <input
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder="Título del artículo"
+            />
+          </label>
 
-      <label>
-        URL de imagen
-        <input
-          name="image_url"
-          value={form.image_url}
-          onChange={handleChange}
-          placeholder="https://..."
-        />
-      </label>
+          <label>
+            URL de imagen
+            <input
+              name="image_url"
+              value={form.image_url}
+              onChange={handleChange}
+              placeholder="https://..."
+            />
+          </label>
 
-      {form.image_url && (
-        <img className={styles.preview} src={form.image_url} alt="preview" />
-      )}
+          {form.image_url && (
+            <img className={styles.preview} src={form.image_url} alt="preview" />
+          )}
+        </div>
 
-      <label>
-        Contenido
-        <textarea
-          name="body"
-          value={form.body}
-          onChange={handleChange}
-          rows={10}
-          placeholder="Escribe el cuerpo de la noticia..."
-        />
-      </label>
+        {/* Columna derecha */}
+        <div className={styles.right}>
+          <label className={styles.bodyLabel}>
+            Contenido
+            <textarea
+              name="body"
+              value={form.body}
+              onChange={handleChange}
+              placeholder="Escribe el cuerpo de la noticia..."
+            />
+          </label>
 
-      <div className={styles.actions}>
-        <button type="submit" className={styles.btnPrimary} disabled={loading}>
-          {loading ? "Guardando…" : initial.id ? "Actualizar" : "Publicar"}
-        </button>
-        {onDelete && (
-          <button
-            type="button"
-            className={styles.btnDanger}
-            onClick={onDelete}
-            disabled={loading}
-          >
-            Eliminar
-          </button>
-        )}
+          <div className={styles.actions}>
+            <button type="submit" className={styles.btnPrimary} disabled={loading}>
+              {loading ? "Guardando…" : initial.id ? "Actualizar" : "Publicar"}
+            </button>
+            {onDelete && (
+              <button
+                type="button"
+                className={styles.btnDanger}
+                onClick={onDelete}
+                disabled={loading}
+              >
+                Eliminar
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </form>
   );
