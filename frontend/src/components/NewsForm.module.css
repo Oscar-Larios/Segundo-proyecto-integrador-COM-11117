@@ -2,9 +2,27 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 720px;
-  margin: 0 auto;
+  width: 100%;
 }
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+.left, .right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right { height: 100%; }
 
 .form label {
   display: flex;
@@ -14,6 +32,22 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.bodyLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: 1;
+}
+
+.bodyLabel textarea {
+  flex: 1;
+  min-height: 320px;
 }
 
 .form input, .form textarea {
