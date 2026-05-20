@@ -1,7 +1,7 @@
 .main {
-  max-width: 800px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 32px 24px 64px;
+  padding: 32px 48px 64px;
 }
 
 .back {
@@ -17,7 +17,13 @@
 
 .article { display: flex; flex-direction: column; gap: 28px; }
 
-.header { display: flex; flex-direction: column; gap: 10px; border-bottom: 2px solid var(--black); padding-bottom: 20px; }
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 20px;
+}
 
 .author {
   font-size: 0.75rem;
@@ -37,13 +43,27 @@
 
 .date { font-size: 0.82rem; color: var(--muted); }
 
-.hero {
-  width: 100%;
-  max-height: 480px;
-  object-fit: cover;
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.body {
+@media (max-width: 800px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+.imageCol { position: sticky; top: 20px; }
+
+.hero {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.bodyCol {
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--ink);
@@ -52,16 +72,15 @@
   gap: 16px;
 }
 
-.ownerActions { padding-top: 24px; border-top: 1px solid var(--border); }
-
 .btnEdit {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 8px 20px;
   border: 1px solid var(--black);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: all 0.15s;
+  align-self: flex-start;
 }
 .btnEdit:hover { background: var(--black); color: var(--white); }
 

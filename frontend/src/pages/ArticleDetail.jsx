@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { api } from "../services/api";
 import styles from "./ArticleDetail.module.css";
 
 export default function ArticleDetail() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,23 +37,24 @@ export default function ArticleDetail() {
               weekday: "long", year: "numeric", month: "long", day: "numeric",
             })}
           </time>
-        </header>
-
-        <img className={styles.hero} src={article.image_url} alt={article.title} />
-
-        <div className={styles.body}>
-          {article.body.split("\n").map((para, i) =>
-            para ? <p key={i}>{para}</p> : null
-          )}
-        </div>
-
-        {isOwner && (
-          <div className={styles.ownerActions}>
+          {isOwner && (
             <Link to={`/edit/${article.id}`} className={styles.btnEdit}>
               Editar artículo
             </Link>
+          )}
+        </header>
+
+        <div className={styles.columns}>
+          <div className={styles.imageCol}>
+            <img className={styles.hero} src={article.image_url} alt={article.title} />
           </div>
-        )}
+
+          <div className={styles.bodyCol}>
+            {article.body.split("\n").map((para, i) =>
+              para ? <p key={i}>{para}</p> : null
+            )}
+          </div>
+        </div>
       </article>
     </main>
   );
