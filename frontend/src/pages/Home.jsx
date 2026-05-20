@@ -6,8 +6,13 @@ import Pagination from "../components/Pagination";
 import styles from "./Home.module.css";
 
 export default function Home() {
-  const [viewMode, setViewMode] = useState("cards"); // "cards" | "list"
+  const [viewMode, setViewMode] = useState("cards");
   const { articles, page, setPage, totalPages, loading, error, refresh } = useArticles();
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <main className={styles.main}>
@@ -17,14 +22,12 @@ export default function Home() {
           <button
             className={`${styles.viewBtn} ${viewMode === "cards" ? styles.active : ""}`}
             onClick={() => setViewMode("cards")}
-            title="Vista en tarjetas"
           >
             ▦ Cards
           </button>
           <button
             className={`${styles.viewBtn} ${viewMode === "list" ? styles.active : ""}`}
             onClick={() => setViewMode("list")}
-            title="Vista en lista"
           >
             ☰ Lista
           </button>
@@ -49,7 +52,9 @@ export default function Home() {
         </div>
       )}
 
-      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+      {!loading && totalPages > 1 && (
+        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
+      )}
     </main>
   );
 }

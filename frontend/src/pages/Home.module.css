@@ -1,7 +1,7 @@
 .main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 24px 80px;
 }
 
 .toolbar {
@@ -11,7 +11,7 @@
   margin-bottom: 28px;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--black);
-  gap: 24px; 
+  gap: 24px;
 }
 
 .sectionTitle {
@@ -51,20 +51,16 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  .grid { grid-template-columns: 1fr; }
 }
 
 .list { display: flex; flex-direction: column; }

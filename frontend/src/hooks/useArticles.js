@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { api } from "../services/api";
 
-const STORAGE_KEY = "articles_cache";
 const TIMESTAMP_KEY = "articles_timestamp";
 
 export function useArticles() {
@@ -16,25 +15,13 @@ export function useArticles() {
     setError(null);
 
     try {
-      const cached = localStorage.getItem(STORAGE_KEY);
       const timestamp = localStorage.getItem(TIMESTAMP_KEY);
-      const isFirstLoad = !cached || !timestamp;
+      const data = await api.getArticles(currentPage, timestamp);
 
-      if (isFirstLoad) {
-        // Primera vez: traer todo y guardar en localStorage
-        const data = await api.getArticles(currentPage);
-        setArticles(data.articles);
-        setTotalPages(data.pages);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data.articles));
-        localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
-      } else {
-        // Siguientes renders: pedir solo nuevos desde el timestamp
-        const data = await api.getArticles(currentPage, timestamp);
-        const previous = JSON.parse(cached);
-        const merged = [...data.articles, ...previous];
-        setArticles(merged);
-        setTotalPages(data.pages || totalPages);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      setArticles(data.articles);
+      setTotalPages(data.pages);
+
+      if (currentPage === 1) {
         localStorage.setItem(TIMESTAMP_KEY, new Date().toISOString());
       }
     } catch (err) {
@@ -49,9 +36,9 @@ export function useArticles() {
   }, [page, fetchArticles]);
 
   const refresh = () => {
-    localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(TIMESTAMP_KEY);
-    fetchArticles(page);
+    setPage(1);
+    fetchArticles(1);
   };
 
   return { articles, page, setPage, totalPages, loading, error, refresh };
