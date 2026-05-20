@@ -24,7 +24,7 @@ async function request(path, options = {}) {
 
 export const api = {
   getArticles: (page = 1, since = null) => {
-    const params = new URLSearchParams({ page, per_page: 10 });
+    const params = new URLSearchParams({ page, per_page: 9});
     if (since) params.append("since", since);
     return request(`/articles?${params}`);
   },
