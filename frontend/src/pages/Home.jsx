@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useArticles } from "../hooks/useArticles";
 import NewsCard from "../components/NewsCard";
 import NewsListItem from "../components/NewsListItem";
@@ -6,7 +6,8 @@ import Pagination from "../components/Pagination";
 import styles from "./Home.module.css";
 
 export default function Home() {
-  const [viewMode, setViewMode] = useState("cards");
+  const isMobile = window.innerWidth <= 600;
+  const [viewMode, setViewMode] = useState(isMobile ? "list" : "cards");
   const { articles, page, setPage, totalPages, loading, error, refresh } = useArticles();
 
   const handlePageChange = (newPage) => {
@@ -19,18 +20,22 @@ export default function Home() {
       <div className={styles.toolbar}>
         <h1 className={styles.sectionTitle}>Últimas noticias</h1>
         <div className={styles.controls}>
-          <button
-            className={`${styles.viewBtn} ${viewMode === "cards" ? styles.active : ""}`}
-            onClick={() => setViewMode("cards")}
-          >
-            ▦ Cards
-          </button>
-          <button
-            className={`${styles.viewBtn} ${viewMode === "list" ? styles.active : ""}`}
-            onClick={() => setViewMode("list")}
-          >
-            ☰ Lista
-          </button>
+          {!isMobile && (
+            <>
+              <button
+                className={`${styles.viewBtn} ${viewMode === "cards" ? styles.active : ""}`}
+                onClick={() => setViewMode("cards")}
+              >
+                ▦ Cards
+              </button>
+              <button
+                className={`${styles.viewBtn} ${viewMode === "list" ? styles.active : ""}`}
+                onClick={() => setViewMode("list")}
+              >
+                ☰ Lista
+              </button>
+            </>
+          )}
           <button className={styles.refreshBtn} onClick={refresh}>↺ Actualizar</button>
         </div>
       </div>
